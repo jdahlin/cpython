@@ -32,6 +32,10 @@ placeholders:
 - gettext (used by argparse: gettext, ngettext)
 - subprocess (placeholders for output of uname, lsb_release)
 
+The point of the placeholders is to show that with some minor additional work,
+pip can be modified to support this special 'kernel' version of python where
+most of the standard library is not yet available. 
+
 This is an incomplete list of modules that requires some more work to remove:
 
 - _markupbase: html.parser
