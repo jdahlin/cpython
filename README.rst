@@ -30,13 +30,12 @@ placeholders:
 - plistlib (import)
 - inspect (getmro)
 - gettext (used by argparse: gettext, ngettext)
+- subprocess (placeholders for output of uname, lsb_release)
 
 This is an incomplete list of modules that requires some more work to remove:
 
-- expat: etree
-- etree: pip.html5lib
-- email: distutils, httplip
 - _markupbase: html.parser
+- email: distutils, httplip
 - configparser: distutils
 - calendar: email.utils
 - compileall: pip._internal.wheel
@@ -49,7 +48,6 @@ This is an incomplete list of modules that requires some more work to remove:
 - glob: setup.py
 - heapq: collections
 - idna: pip._vendor.requests
-- inspect: pkg_resources
 - locale: calendar
 - mimetypes: pip._vendor.urllib3.fields
 - optparse: pip._internal.cli.autocompletion
@@ -62,8 +60,8 @@ This is an incomplete list of modules that requires some more work to remove:
 - selectors: socket
 - socketserver: pip._internal.cli.base_command
 - stringprep: idna
-- subprocess: pip._internal.utils
 - tarfile: pip._internal.utils.misc
+- xml.{etree,expat,sax}: pip index parser (pip._internal.index)
 - xmlrpc: six, pip
 
 
