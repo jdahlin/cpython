@@ -751,8 +751,8 @@ class PyBuildExt(build_ext):
         # heapq
         #self.add(Extension("_heapq", ["_heapqmodule.c"]))
         # C-optimized pickle replacement
-        self.add(Extension("_pickle", ["_pickle.c"],
-                           extra_compile_args=['-DPy_BUILD_CORE_MODULE']))
+        #self.add(Extension("_pickle", ["_pickle.c"],
+        #                   extra_compile_args=['-DPy_BUILD_CORE_MODULE']))
         # atexit
         self.add(Extension("atexit", ["atexitmodule.c"]))
         # _json speedups
