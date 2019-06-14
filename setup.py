@@ -723,9 +723,6 @@ class PyBuildExt(build_ext):
         # on pretty much any POSIXish platform.
         #
 
-        # array objects
-        self.add(Extension('array', ['arraymodule.c']))
-
         shared_math = 'Modules/_math.o'
 
         # math library functions, e.g. sin()
