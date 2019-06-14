@@ -32,6 +32,7 @@ placeholders:
 - locale (setlocale, Error)
 - numbers (import)
 - plistlib (import)
+- reprlib (used by colletions, recursirve_repr)
 - stringprep (import)
 - subprocess (placeholders for output of uname, lsb_release)
 
@@ -57,7 +58,6 @@ This is an incomplete list of modules that requires some more work to remove:
 - pprint: pip._vendor.pyparsing
 - queue: six
 - quopri: email.parser
-- reprlib: collections
 - shlex: pip._internal.req
 - selectors: socket
 - socketserver: pip._internal.cli.base_command
