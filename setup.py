@@ -1381,20 +1381,6 @@ class PyBuildExt(build_ext):
         self.add(Extension('_multiprocessing', multiprocessing_srcs,
                            include_dirs=["Modules/_multiprocessing"]))
 
-    def detect_uuid(self):
-        # Build the _uuid module if possible
-        uuid_incs = find_file("uuid.h", self.inc_dirs, ["/usr/include/uuid"])
-        if uuid_incs is not None:
-            if self.compiler.find_library_file(self.lib_dirs, 'uuid'):
-                uuid_libs = ['uuid']
-            else:
-                uuid_libs = []
-            self.add(Extension('_uuid', ['_uuidmodule.c'],
-                               libraries=uuid_libs,
-                               include_dirs=uuid_incs))
-        else:
-            self.missing.append('_uuid')
-
     def detect_modules(self):
         self.configure_compiler()
         self.init_inc_lib_dirs()
@@ -1414,7 +1400,6 @@ class PyBuildExt(build_ext):
         self.detect_multibytecodecs()
         self.detect_ctypes()
         self.detect_multiprocessing()
-        self.detect_uuid()
 
 ##         # Uncomment these lines if you want to play with xxmodule.c
 ##         self.add(Extension('xx', ['xxmodule.c']))
