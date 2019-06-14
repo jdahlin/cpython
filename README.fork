@@ -1,0 +1,58 @@
+This fork is a proof of concept to figure the minimum subset of Python 
+that is requires to be able to bootstrap pip.
+
+Inspiration comes from https://glyph.twistedmatrix.com/2019/06/kernel-python.html
+
+What has been tested to verify pip has been to install the requests
+library and downloading the content of https://google.com.
+The only platform that has been tested is Linux (debian/sid).
+
+Some libraries are used very lightly an empty file or a small
+subset has been implemented:
+
+placeholders:
+- calendar (timegm)
+- cgi (parseheader)
+- getpass (import
+- hmac (import)
+- numbers (import)
+- plistlib (import)
+- inspect (getmro)
+- gettext (used by argparse: gettext, ngettext)
+
+This is an incomplete list of modules that requires some more work to remove:
+
+expat: etree
+etree: pip.html5lib
+email: distutils, httplip
+html:
+urllib:
+_markupbase: html.parser
+configparser: distutils
+calendar: email.utils
+compileall: pip._internal.wheel
+contextlib: urllib3
+copy: tarfile
+csv: wheel
+email.parser: http.client
+getpass: pip._internal.download
+gettext: argparse
+glob: setup.py
+heapq: collections
+idna: pip._vendor.requests
+inspect: pkg_resources
+locale: calendar
+mimetypes: pip._vendor.urllib3.fields
+optparse: pip._internal.cli.autocompletion
+platform: pip._internal.locations
+pprint: pip._vendor.pyparsing
+queue: six
+quopri: email.parser
+reprlib: collections
+shlex: pip._internal.req
+selectors: socket
+socketserver: pip._internal.cli.base_command
+stringprep: idna
+subprocess: pip._internal.utils
+tarfile: pip._internal.utils.misc
+xmlrpc: six, pip
