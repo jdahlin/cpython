@@ -1063,32 +1063,6 @@ class PyBuildExt(build_ext):
             self.add(Extension('_codecs_%s' % loc,
                                ['cjkcodecs/_codecs_%s.c' % loc]))
 
-    def detect_multiprocessing(self):
-        # Richard Oudkerk's multiprocessing module
-        if MS_WINDOWS:
-            multiprocessing_srcs = ['_multiprocessing/multiprocessing.c',
-                                    '_multiprocessing/semaphore.c']
-
-        else:
-            multiprocessing_srcs = ['_multiprocessing/multiprocessing.c']
-            if (sysconfig.get_config_var('HAVE_SEM_OPEN') and not
-                sysconfig.get_config_var('POSIX_SEMAPHORES_NOT_ENABLED')):
-                multiprocessing_srcs.append('_multiprocessing/semaphore.c')
-            if (sysconfig.get_config_var('HAVE_SHM_OPEN') and
-                sysconfig.get_config_var('HAVE_SHM_UNLINK')):
-                posixshmem_srcs = ['_multiprocessing/posixshmem.c']
-                libs = []
-                if sysconfig.get_config_var('SHM_NEEDS_LIBRT'):
-                    # need to link with librt to get shm_open()
-                    libs.append('rt')
-                self.add(Extension('_posixshmem', posixshmem_srcs,
-                                   define_macros={},
-                                   libraries=libs,
-                                   include_dirs=["Modules/_multiprocessing"]))
-
-        self.add(Extension('_multiprocessing', multiprocessing_srcs,
-                           include_dirs=["Modules/_multiprocessing"]))
-
     def detect_modules(self):
         self.configure_compiler()
         self.init_inc_lib_dirs()
@@ -1105,7 +1079,6 @@ class PyBuildExt(build_ext):
         self.detect_expat_elementtree()
         self.detect_multibytecodecs()
         self.detect_ctypes()
-        self.detect_multiprocessing()
 
 ##         # Uncomment these lines if you want to play with xxmodule.c
 ##         self.add(Extension('xx', ['xxmodule.c']))
