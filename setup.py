@@ -742,8 +742,8 @@ class PyBuildExt(build_ext):
                            libraries=time_libs))
         # libm is needed by delta_new() that uses round() and by accum() that
         # uses modf().
-        self.add(Extension('_datetime', ['_datetimemodule.c'],
-                           libraries=['m']))
+        #self.add(Extension('_datetime', ['_datetimemodule.c'],
+        #                   libraries=['m']))
         # random number generator implemented in C
         self.add(Extension("_random", ["_randommodule.c"]))
         # bisect
