@@ -1272,14 +1272,7 @@ class PyBuildExt(build_ext):
                            extra_compile_args=extra_compile_args,
                            libraries=libraries,
                            extra_link_args=extra_link_args))
-
-        # LZMA compression support.
-        if self.compiler.find_library_file(self.lib_dirs, 'lzma'):
-            self.add(Extension('_lzma', ['_lzmamodule.c'],
-                               libraries=['lzma']))
-        else:
-            self.missing.append('_lzma')
-
+    
     def detect_expat_elementtree(self):
         # Interface to the Expat XML parser
         #
