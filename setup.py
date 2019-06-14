@@ -1101,7 +1101,6 @@ class PyBuildExt(build_ext):
         self.detect_openssl_hashlib()
         self.detect_hash_builtins()
         self.detect_platform_specific_exts()
-        self.detect_nis()
         self.detect_compress_exts()
         self.detect_expat_elementtree()
         self.detect_multibytecodecs()
@@ -1316,50 +1315,6 @@ class PyBuildExt(build_ext):
                            ['_sha3/sha3module.c'],
                            depends=sha3_deps))
 
-    def detect_nis(self):
-        if MS_WINDOWS or CYGWIN or HOST_PLATFORM == 'qnx6':
-            self.missing.append('nis')
-            return
-
-        libs = []
-        library_dirs = []
-        includes_dirs = []
-
-        # bpo-32521: glibc has deprecated Sun RPC for some time. Fedora 28
-        # moved headers and libraries to libtirpc and libnsl. The headers
-        # are in tircp and nsl sub directories.
-        rpcsvc_inc = find_file(
-            'rpcsvc/yp_prot.h', self.inc_dirs,
-            [os.path.join(inc_dir, 'nsl') for inc_dir in self.inc_dirs]
-        )
-        rpc_inc = find_file(
-            'rpc/rpc.h', self.inc_dirs,
-            [os.path.join(inc_dir, 'tirpc') for inc_dir in self.inc_dirs]
-        )
-        if rpcsvc_inc is None or rpc_inc is None:
-            # not found
-            self.missing.append('nis')
-            return
-        includes_dirs.extend(rpcsvc_inc)
-        includes_dirs.extend(rpc_inc)
-
-        if self.compiler.find_library_file(self.lib_dirs, 'nsl'):
-            libs.append('nsl')
-        else:
-            # libnsl-devel: check for libnsl in nsl/ subdirectory
-            nsl_dirs = [os.path.join(lib_dir, 'nsl') for lib_dir in self.lib_dirs]
-            libnsl = self.compiler.find_library_file(nsl_dirs, 'nsl')
-            if libnsl is not None:
-                library_dirs.append(os.path.dirname(libnsl))
-                libs.append('nsl')
-
-        if self.compiler.find_library_file(self.lib_dirs, 'tirpc'):
-            libs.append('tirpc')
-
-        self.add(Extension('nis', ['nismodule.c'],
-                           libraries=libs,
-                           library_dirs=library_dirs,
-                           include_dirs=includes_dirs))
 
 
 class PyBuildInstall(install):
