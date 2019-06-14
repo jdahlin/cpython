@@ -799,12 +799,6 @@ class PyBuildExt(build_ext):
         # grp(3)
         if not VXWORKS:
             self.add(Extension('grp', ['grpmodule.c']))
-        # spwd, shadow passwords
-        if (self.config_h_vars.get('HAVE_GETSPNAM', False) or
-                self.config_h_vars.get('HAVE_GETSPENT', False)):
-            self.add(Extension('spwd', ['spwdmodule.c']))
-        else:
-            self.missing.append('spwd')
 
         # select(2); not on ancient System V
         self.add(Extension('select', ['selectmodule.c']))
@@ -835,10 +829,6 @@ class PyBuildExt(build_ext):
         # According to #993173, this one should actually work fine on
         # 64-bit platforms.
         #
-        # audioop needs libm for floor() in multiple functions.
-        self.add(Extension('audioop', ['audioop.c'],
-                           libraries=['m']))
-
         # CSV files
         self.add(Extension('_csv', ['_csv.c']))
 
@@ -889,12 +879,6 @@ class PyBuildExt(build_ext):
             self.add(Extension('resource', ['resource.c']))
         else:
             self.missing.extend(['resource', 'termios'])
-
-        # Platform-specific libraries
-        if HOST_PLATFORM.startswith(('linux', 'freebsd', 'gnukfreebsd')):
-            self.add(Extension('ossaudiodev', ['ossaudiodev.c']))
-        else:
-            self.missing.append('ossaudiodev')
 
         if MACOS:
             self.add(Extension('_scproxy', ['_scproxy.c'],

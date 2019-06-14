@@ -7,7 +7,6 @@
 __all__ = ['Message', 'EmailMessage']
 
 import re
-import uu
 import quopri
 from io import BytesIO, StringIO
 
