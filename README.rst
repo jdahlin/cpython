@@ -26,6 +26,7 @@ placeholders:
 - cgi (parseheader)
 - getpass (import
 - gettext (used by argparse: gettext, ngettext)
+- heapq (used by queue, heappop, heappush)
 - hmac (import)
 - inspect (getmro)
 - locale (setlocale, Error)
@@ -49,7 +50,6 @@ This is an incomplete list of modules that requires some more work to remove:
 - csv: wheel
 - email.parser: http.client
 - glob: setup.py
-- heapq: collections
 - idna: pip._vendor.requests
 - mimetypes: pip._vendor.urllib3.fields
 - optparse: pip._internal.cli.autocompletion
