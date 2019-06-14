@@ -792,10 +792,6 @@ class PyBuildExt(build_ext):
         # Memory-mapped files (also works on Win32).
         self.add(Extension('mmap', ['mmapmodule.c']))
 
-        # Lance Ellinghaus's syslog module
-        # syslog daemon interface
-        self.add(Extension('syslog', ['syslogmodule.c']))
-
         # Python interface to subinterpreter C-API.
         self.add(Extension('_xxsubinterpreters', ['_xxsubinterpretersmodule.c']))
 
