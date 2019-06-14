@@ -25,11 +25,13 @@ placeholders:
 - calendar (timegm)
 - cgi (parseheader)
 - getpass (import
+- gettext (used by argparse: gettext, ngettext)
 - hmac (import)
+- inspect (getmro)
+- locale (setlocale, Error)
 - numbers (import)
 - plistlib (import)
-- inspect (getmro)
-- gettext (used by argparse: gettext, ngettext)
+- stringprep (import)
 - subprocess (placeholders for output of uname, lsb_release)
 
 The point of the placeholders is to show that with some minor additional work,
@@ -41,18 +43,14 @@ This is an incomplete list of modules that requires some more work to remove:
 - _markupbase: html.parser
 - email: distutils, httplip
 - configparser: distutils
-- calendar: email.utils
 - compileall: pip._internal.wheel
 - contextlib: urllib3
 - copy: tarfile
 - csv: wheel
 - email.parser: http.client
-- getpass: pip._internal.download
-- gettext: argparse
 - glob: setup.py
 - heapq: collections
 - idna: pip._vendor.requests
-- locale: calendar
 - mimetypes: pip._vendor.urllib3.fields
 - optparse: pip._internal.cli.autocompletion
 - platform: pip._internal.locations
@@ -67,7 +65,6 @@ This is an incomplete list of modules that requires some more work to remove:
 - tarfile: pip._internal.utils.misc
 - xml.{etree,expat,sax}: pip index parser (pip._internal.index)
 - xmlrpc: six, pip
-
 
 
 This is Python version 3.9.0 alpha 0
