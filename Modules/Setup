@@ -356,7 +356,7 @@ _tracemalloc _tracemalloc.c hashtable.c
 # xx xxmodule.c
 
 # Another example -- the 'xxsubtype' module shows C-level subtyping in action
-xxsubtype xxsubtype.c
+#xxsubtype xxsubtype.c
 
 # Uncommenting the following line tells makesetup that all following modules
 # are not built (see above for more detail).
