@@ -770,10 +770,6 @@ class PyBuildExt(build_ext):
         # (If you have a really backward UNIX, select and socket may not be
         # supported...)
 
-        # grp(3)
-        if not VXWORKS:
-            self.add(Extension('grp', ['grpmodule.c']))
-
         # select(2); not on ancient System V
         self.add(Extension('select', ['selectmodule.c']))
 
