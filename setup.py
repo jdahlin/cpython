@@ -747,7 +747,7 @@ class PyBuildExt(build_ext):
         # random number generator implemented in C
         self.add(Extension("_random", ["_randommodule.c"]))
         # bisect
-        self.add(Extension("_bisect", ["_bisectmodule.c"]))
+        #self.add(Extension("_bisect", ["_bisectmodule.c"]))
         # heapq
         self.add(Extension("_heapq", ["_heapqmodule.c"]))
         # C-optimized pickle replacement
