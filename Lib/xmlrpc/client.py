@@ -132,7 +132,10 @@ import base64
 import sys
 import time
 from datetime import datetime
-from decimal import Decimal
+try:
+    from decimal import Decimal
+except ImportError:
+    Decimal = None
 import http.client
 import urllib.parse
 from xml.parsers import expat
@@ -744,10 +747,11 @@ class Unmarshaller:
     dispatch["double"] = end_double
     dispatch["float"] = end_double
 
-    def end_bigdecimal(self, data):
-        self.append(Decimal(data))
-        self._value = 0
-    dispatch["bigdecimal"] = end_bigdecimal
+    if Decimal:
+        def end_bigdecimal(self, data):
+            self.append(Decimal(data))
+            self._value = 0
+        dispatch["bigdecimal"] = end_bigdecimal
 
     def end_string(self, data):
         if self._encoding:
