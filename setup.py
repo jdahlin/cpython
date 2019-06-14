@@ -1254,16 +1254,6 @@ class PyBuildExt(build_ext):
         self.add(Extension('_sha1', ['sha1module.c'],
                            depends=['hashlib.h']))
 
-        blake2_deps = glob(os.path.join(self.srcdir,
-                                        'Modules/_blake2/impl/*'))
-        blake2_deps.append('hashlib.h')
-
-        self.add(Extension('_blake2',
-                           ['_blake2/blake2module.c',
-                            '_blake2/blake2b_impl.c',
-                            '_blake2/blake2s_impl.c'],
-                           depends=blake2_deps))
-
         sha3_deps = glob(os.path.join(self.srcdir,
                                       'Modules/_sha3/kcp/*'))
         sha3_deps.append('hashlib.h')
