@@ -1037,14 +1037,6 @@ class PyBuildExt(build_ext):
         else:
             self.missing.append('_elementtree')
 
-    def detect_multibytecodecs(self):
-        # Hye-Shik Chang's CJKCodecs modules.
-        self.add(Extension('_multibytecodec',
-                           ['cjkcodecs/multibytecodec.c']))
-        for loc in ('kr', 'jp', 'cn', 'tw', 'hk', 'iso2022'):
-            self.add(Extension('_codecs_%s' % loc,
-                               ['cjkcodecs/_codecs_%s.c' % loc]))
-
     def detect_modules(self):
         self.configure_compiler()
         self.init_inc_lib_dirs()
@@ -1058,7 +1050,6 @@ class PyBuildExt(build_ext):
         self.detect_platform_specific_exts()
         self.detect_compress_exts()
         self.detect_expat_elementtree()
-        self.detect_multibytecodecs()
         self.detect_ctypes()
 
 ##         # Uncomment these lines if you want to play with xxmodule.c
