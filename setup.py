@@ -789,8 +789,6 @@ class PyBuildExt(build_ext):
             libs = ['bsd']
         self.add(Extension('fcntl', ['fcntlmodule.c'],
                            libraries=libs))
-        # pwd(3)
-        self.add(Extension('pwd', ['pwdmodule.c']))
         # grp(3)
         if not VXWORKS:
             self.add(Extension('grp', ['grpmodule.c']))
