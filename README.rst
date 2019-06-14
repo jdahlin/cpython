@@ -1,3 +1,73 @@
+This fork is a proof of concept to figure the minimum subset of Python 
+that is requires to be able to bootstrap pip.
+
+Inspiration comes from https://glyph.twistedmatrix.com/2019/06/kernel-python.html
+
+The only platform that has been tested is Linux (debian/sid)
+What has been tested to verify pip has been to install the requests
+library and downloading the content of a webpage.
+
+Test using::
+
+    export PIP_USER=1
+    make && \
+      rm -fr ~/.local/ && \
+      ./python -mensurepip --user && \
+      ./python -mpip install --upgrade -q pip && \
+      ./python -mpip install -q requests --no-warn-script-location && \
+      ./python -c "import requests; print(len(requests.get(\"https://google.com\").text))"``
+
+Some libraries are used very lightly an empty file or a small
+subset has been implemented:
+
+placeholders:
+
+- calendar (timegm)
+- cgi (parseheader)
+- getpass (import
+- hmac (import)
+- numbers (import)
+- plistlib (import)
+- inspect (getmro)
+- gettext (used by argparse: gettext, ngettext)
+
+This is an incomplete list of modules that requires some more work to remove:
+
+- expat: etree
+- etree: pip.html5lib
+- email: distutils, httplip
+- _markupbase: html.parser
+- configparser: distutils
+- calendar: email.utils
+- compileall: pip._internal.wheel
+- contextlib: urllib3
+- copy: tarfile
+- csv: wheel
+- email.parser: http.client
+- getpass: pip._internal.download
+- gettext: argparse
+- glob: setup.py
+- heapq: collections
+- idna: pip._vendor.requests
+- inspect: pkg_resources
+- locale: calendar
+- mimetypes: pip._vendor.urllib3.fields
+- optparse: pip._internal.cli.autocompletion
+- platform: pip._internal.locations
+- pprint: pip._vendor.pyparsing
+- queue: six
+- quopri: email.parser
+- reprlib: collections
+- shlex: pip._internal.req
+- selectors: socket
+- socketserver: pip._internal.cli.base_command
+- stringprep: idna
+- subprocess: pip._internal.utils
+- tarfile: pip._internal.utils.misc
+- xmlrpc: six, pip
+
+
+
 This is Python version 3.9.0 alpha 0
 ====================================
 
