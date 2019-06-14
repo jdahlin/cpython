@@ -763,7 +763,7 @@ class PyBuildExt(build_ext):
         self.add(Extension('unicodedata', ['unicodedata.c'],
                            depends=['unicodedata_db.h', 'unicodename_db.h']))
         # _opcode module
-        self.add(Extension('_opcode', ['_opcode.c']))
+        #self.add(Extension('_opcode', ['_opcode.c']))
         # _abc speedups
         self.add(Extension("_abc", ["_abc.c"]))
         # _queue module
