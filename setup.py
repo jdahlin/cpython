@@ -726,9 +726,6 @@ class PyBuildExt(build_ext):
         # array objects
         self.add(Extension('array', ['arraymodule.c']))
 
-        # Context Variables
-        self.add(Extension('_contextvars', ['_contextvarsmodule.c']))
-
         shared_math = 'Modules/_math.o'
 
         # math library functions, e.g. sin()
