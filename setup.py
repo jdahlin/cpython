@@ -731,12 +731,6 @@ class PyBuildExt(build_ext):
                            depends=['_math.h', shared_math],
                            libraries=['m']))
 
-        # complex math library functions
-        self.add(Extension('cmath', ['cmathmodule.c'],
-                           extra_objects=[shared_math],
-                           depends=['_math.h', shared_math],
-                           libraries=['m']))
-
         # time libraries: librt may be needed for clock_gettime()
         time_libs = []
         lib = sysconfig.get_config_var('TIMEMODULE_LIB')
