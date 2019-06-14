@@ -755,9 +755,6 @@ class PyBuildExt(build_ext):
         #                   extra_compile_args=['-DPy_BUILD_CORE_MODULE']))
         # atexit
         self.add(Extension("atexit", ["atexitmodule.c"]))
-        # _json speedups
-        self.add(Extension("_json", ["_json.c"],
-                           extra_compile_args=['-DPy_BUILD_CORE_MODULE']))
 
         # static Unicode character database
         self.add(Extension('unicodedata', ['unicodedata.c'],
