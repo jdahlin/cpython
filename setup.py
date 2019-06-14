@@ -870,22 +870,6 @@ class PyBuildExt(build_ext):
                            ['_xxtestfuzz/_xxtestfuzz.c',
                             '_xxtestfuzz/fuzzer.c']))
 
-    def detect_crypt(self):
-        # crypt module.
-        if VXWORKS:
-            # bpo-31904: crypt() function is not provided by VxWorks.
-            # DES_crypt() OpenSSL provides is too weak to implement
-            # the encryption.
-            return
-
-        if self.compiler.find_library_file(self.lib_dirs, 'crypt'):
-            libs = ['crypt']
-        else:
-            libs = []
-
-        self.add(Extension('_crypt', ['_cryptmodule.c'],
-                               libraries=libs))
-
     def detect_socket(self):
         # socket(2)
         if not VXWORKS:
@@ -1070,7 +1054,6 @@ class PyBuildExt(build_ext):
         self.detect_simple_extensions()
         if TEST_EXTENSIONS:
             self.detect_test_extensions()
-        self.detect_crypt()
         self.detect_socket()
         self.detect_openssl_hashlib()
         self.detect_hash_builtins()
