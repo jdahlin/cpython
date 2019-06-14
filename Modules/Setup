@@ -145,7 +145,7 @@ _tracemalloc _tracemalloc.c hashtable.c
 # ======================================================================
 
 # The Python symtable module depends on .h files that setup.py doesn't track
-_symtable symtablemodule.c
+#_symtable symtablemodule.c
 
 # Uncommenting the following line tells makesetup that all following
 # modules are to be built as shared libraries (see above for more
