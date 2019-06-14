@@ -782,13 +782,6 @@ class PyBuildExt(build_ext):
         # (If you have a really backward UNIX, select and socket may not be
         # supported...)
 
-        # fcntl(2) and ioctl(2)
-        libs = []
-        if (self.config_h_vars.get('FLOCK_NEEDS_LIBBSD', False)):
-            # May be necessary on AIX for flock function
-            libs = ['bsd']
-        self.add(Extension('fcntl', ['fcntlmodule.c'],
-                           libraries=libs))
         # grp(3)
         if not VXWORKS:
             self.add(Extension('grp', ['grpmodule.c']))
