@@ -885,21 +885,6 @@ class PyBuildExt(build_ext):
                 self.missing.append('zlib')
         else:
             self.missing.append('zlib')
-
-        # Helper module for various ascii-encoders.  Uses zlib for an optimized
-        # crc32 if we have it.  Otherwise binascii uses its own.
-        if have_zlib:
-            extra_compile_args = ['-DUSE_ZLIB_CRC32']
-            libraries = ['z']
-            extra_link_args = zlib_extra_link_args
-        else:
-            extra_compile_args = []
-            libraries = []
-            extra_link_args = []
-        self.add(Extension('binascii', ['binascii.c'],
-                           extra_compile_args=extra_compile_args,
-                           libraries=libraries,
-                           extra_link_args=extra_link_args))
     
     def detect_expat_elementtree(self):
         # Interface to the Expat XML parser
