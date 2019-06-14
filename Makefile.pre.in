@@ -526,7 +526,6 @@ coverage-lcov:
 	@lcov --remove $(COVERAGE_INFO) \
 	    '*/Modules/_blake2/impl/*' \
 	    '*/Modules/_ctypes/libffi*/*' \
-	    '*/Modules/_decimal/libmpdec/*' \
 	    '*/Modules/_sha3/kcp/*' \
 	    '*/Modules/expat/*' \
 	    '*/Modules/zlib/*' \
@@ -1308,7 +1307,7 @@ LIBSUBDIRS=	tkinter tkinter/test tkinter/test/test_tkinter \
 		tkinter/test/test_ttk site-packages test \
 		test/audiodata \
 		test/capath test/data \
-		test/cjkencodings test/decimaltestdata \
+		test/cjkencodings \
 		test/xmltestdata test/xmltestdata/c14n-20 \
 		test/dtracedata \
 		test/eintrdata \
