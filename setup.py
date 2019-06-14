@@ -848,13 +848,7 @@ class PyBuildExt(build_ext):
     def detect_platform_specific_exts(self):
         # Unix-only modules
         if not MS_WINDOWS:
-            if not VXWORKS:
-                # Steen Lumholt's termios module
-                self.add(Extension('termios', ['termios.c']))
-                # Jeremy Hylton's rlimit interface
             self.add(Extension('resource', ['resource.c']))
-        else:
-            self.missing.extend(['resource', 'termios'])
 
         if MACOS:
             self.add(Extension('_scproxy', ['_scproxy.c'],
